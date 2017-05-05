@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+
 /**
  * Created by jjiang153 on 2017/5/4.
  */
@@ -15,11 +16,14 @@ import lombok.Setter;
 @Builder
 public class ArticleVo {
 
-    private long aid;
-
     private String title;
 
     private String context;
+
+    private String createdDate;
+
+    private String lastModifiedDate;
+
 
     public ArticleVo() {
     }
@@ -27,8 +31,9 @@ public class ArticleVo {
     public static ArticleVo from(ArticleEntity articleEntity){
         return ArticleVo.builder()
                 .title(articleEntity.getTitle())
-                .aid(articleEntity.getAid())
                 .context(articleEntity.getContext())
+                .createdDate(articleEntity.getCreatedDate().toString())
+                .lastModifiedDate(articleEntity.getLastModifiedDate().toString())
                 .build();
     }
 

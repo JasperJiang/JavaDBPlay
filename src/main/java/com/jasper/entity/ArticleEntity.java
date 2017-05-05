@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ArticleEntity {
+public class ArticleEntity extends AbstractEntity {
 
     @Id
     @Column(name = "aid")
@@ -25,7 +25,7 @@ public class ArticleEntity {
     @Column(name = "title",nullable = false,length = 25)
     private String title;
 
-    @Column(name = "context",nullable = false,length = 255)
+    @Column(name = "context",nullable = false,columnDefinition="TEXT")
     private String context;
 
     @ManyToOne(cascade = {CascadeType.PERSIST})

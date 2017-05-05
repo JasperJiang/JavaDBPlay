@@ -16,14 +16,18 @@ import java.util.Set;
 @Setter
 @Builder
 @AllArgsConstructor
-public class UserEntity {
+public class UserEntity extends AbstractEntity {
     @Id
     @Column(name = "uid")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long uid;
 
-    @Column(name = "user_name", nullable = false,length = 30,unique = true)
+    @Column(name = "username", nullable = false,length = 30,unique = true)
     private String username;
+
+
+    @Column(name = "password",nullable = false,length = 30)
+    private String password;
 
     @Column(name = "first_name", nullable = false, length = 30)
     private String firstName;
@@ -37,13 +41,16 @@ public class UserEntity {
     @Column(name = "age", nullable = false, length = 3)
     private int age;
 
+    @Column(name = "enabled",nullable = false)
+    private boolean enabled = true;
+
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
     private Set<ArticleEntity> articles;
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("user_name", username)
+                .append("username", username)
                 .append("first_name", firstName)
                 .append("last_name",lastName)
                 .append("country",country)

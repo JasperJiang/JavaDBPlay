@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Email;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,9 +20,10 @@ import java.util.stream.Collectors;
 @Builder
 public class UserVo {
 
-    private long uid;
-
+    @Email
     private String username;
+
+    private String password;
 
     private String firstName;
 
@@ -32,6 +34,11 @@ public class UserVo {
     private int age;
 
     private Set<ArticleVo> articles;
+
+    private String createdDate;
+
+    private String lastModifiedDate;
+
 
     public UserVo() {
         //Default ctor
@@ -50,6 +57,9 @@ public class UserVo {
                 .lastName(userEntity.getLastName())
                 .username(userEntity.getUsername())
                 .articles(articleVos)
+                .createdDate(userEntity.getCreatedDate().toString())
+                .lastModifiedDate(userEntity.getLastModifiedDate().toString())
+                .password(userEntity.getPassword())
                 .build();
     }
 }

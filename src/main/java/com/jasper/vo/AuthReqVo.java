@@ -14,11 +14,11 @@ import java.io.Serializable;
 public class AuthReqVo implements Serializable {
 
     private String username;
-    private String password;
+    private byte[] password;
 
 
     public AuthReqVo(Authentication auth) {
         this.username = auth.getName().trim();
-        this.password = auth.getCredentials().toString();
+        this.password = auth.getCredentials().toString().getBytes();
     }
 }

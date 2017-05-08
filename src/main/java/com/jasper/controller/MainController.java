@@ -7,6 +7,7 @@ import com.jasper.repository.ArticleRepository;
 import com.jasper.repository.UserRepository;
 import com.jasper.vo.ArticleVo;
 import com.jasper.vo.AuthReqVo;
+import com.jasper.vo.AuthVo;
 import com.jasper.vo.UserVo;
 import jdk.nashorn.internal.runtime.options.Option;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -46,7 +47,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "auth",method = RequestMethod.POST)
-    public Object auth(@Validated @RequestBody AuthReqVo authReqVo){
-        return userService.auth(authReqVo);
+    public Object auth(@Validated @RequestBody AuthVo authVo){
+        return userService.auth(authVo);
     }
 }

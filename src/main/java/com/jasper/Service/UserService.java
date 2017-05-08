@@ -4,12 +4,9 @@ import com.jasper.entity.ArticleEntity;
 import com.jasper.entity.UserEntity;
 import com.jasper.repository.ArticleRepository;
 import com.jasper.repository.UserRepository;
-import com.jasper.vo.ArticleVo;
-import com.jasper.vo.AuthReqVo;
-import com.jasper.vo.RespVo;
-import com.jasper.vo.UserVo;
-import org.apache.tomcat.util.codec.binary.Base64;
+import com.jasper.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -49,7 +46,7 @@ public class UserService {
                 .firstName(userVo.getFirstName())
                 .lastName(userVo.getLastName())
                 .username(userVo.getUsername())
-                .password(Base64.encodeBase64(userVo.getPassword().getBytes()))
+                .password(Base64.encode(userVo.getPassword().getBytes()))
                 .build();
 
         userRepository.save(userEntity);
@@ -69,9 +66,9 @@ public class UserService {
         return map;
     }
 
-    public Object auth(AuthReqVo authReqVo){
+    public Object auth(AuthVo authVo){
 
-        UserEntity userEntity = userRepository.findFirstByUsernameAndPassword(authReqVo.getUsername(),Base64.encodeBase64(authReqVo.getPassword().getBytes()));
+        UserEntity userEntity = userRepository.findFirstByUsernameAndPassword(authVo.getUsername(),Base64.encode(authVo.getPassword().getBytes()));
         RespVo respVo;
         if (userEntity!=null){
             respVo = new RespVo(200,"good");

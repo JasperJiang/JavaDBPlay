@@ -1,18 +1,10 @@
 package com.jasper.controller;
 
 import com.jasper.Service.UserService;
-import com.jasper.entity.ArticleEntity;
-import com.jasper.entity.UserEntity;
 import com.jasper.enums.ErrorCodesEnum;
 import com.jasper.exception.TestExcepition;
-import com.jasper.repository.ArticleRepository;
-import com.jasper.repository.UserRepository;
-import com.jasper.vo.ArticleVo;
-import com.jasper.vo.AuthReqVo;
 import com.jasper.vo.AuthVo;
 import com.jasper.vo.UserVo;
-import jdk.nashorn.internal.runtime.options.Option;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,11 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Created by jjiang153 on 2017/5/4.

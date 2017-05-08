@@ -1,6 +1,7 @@
 package com.jasper.Service;
 
 import com.jasper.entity.UserEntity;
+import com.jasper.exception.SSOAuthenticationException;
 import com.jasper.repository.UserRepository;
 import com.jasper.vo.AuthReqVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,11 +51,5 @@ public class SSOAuthProvider implements AuthenticationProvider {
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
     }
 
-    public static class SSOAuthenticationException extends AuthenticationException {
-
-        public SSOAuthenticationException(String msg) {
-            super(msg);
-        }
-    }
 }
 

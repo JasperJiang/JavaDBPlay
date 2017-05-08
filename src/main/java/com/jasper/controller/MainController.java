@@ -3,6 +3,8 @@ package com.jasper.controller;
 import com.jasper.Service.UserService;
 import com.jasper.entity.ArticleEntity;
 import com.jasper.entity.UserEntity;
+import com.jasper.enums.ErrorCodesEnum;
+import com.jasper.exception.TestExcepition;
 import com.jasper.repository.ArticleRepository;
 import com.jasper.repository.UserRepository;
 import com.jasper.vo.ArticleVo;
@@ -49,5 +51,12 @@ public class MainController {
     @RequestMapping(value = "auth",method = RequestMethod.POST)
     public Object auth(@Validated @RequestBody AuthVo authVo){
         return userService.auth(authVo);
+    }
+
+
+    @RequestMapping(value = "test",method = RequestMethod.GET)
+    public Object test(){
+        throw new TestExcepition(ErrorCodesEnum.ERR_TEST,"testtest");
+//        return "1";
     }
 }

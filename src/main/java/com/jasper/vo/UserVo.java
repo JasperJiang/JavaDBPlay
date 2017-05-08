@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.validator.constraints.Email;
 
 import java.util.Set;
@@ -59,7 +60,7 @@ public class UserVo {
                 .articles(articleVos)
                 .createdDate(userEntity.getCreatedDate().toString())
                 .lastModifiedDate(userEntity.getLastModifiedDate().toString())
-                .password(userEntity.getPassword())
+                .password(Base64.decodeBase64(userEntity.getPassword()).toString())
                 .build();
     }
 }

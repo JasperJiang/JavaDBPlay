@@ -27,7 +27,8 @@ public class UserEntity extends AbstractEntity {
 
 
     @Column(name = "password",nullable = false,length = 30)
-    private String password;
+    @Lob
+    private byte[] password;
 
     @Column(name = "first_name", nullable = false, length = 30)
     private String firstName;

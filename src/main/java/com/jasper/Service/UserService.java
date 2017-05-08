@@ -5,6 +5,8 @@ import com.jasper.entity.UserEntity;
 import com.jasper.repository.ArticleRepository;
 import com.jasper.repository.UserRepository;
 import com.jasper.vo.ArticleVo;
+import com.jasper.vo.AuthReqVo;
+import com.jasper.vo.RespVo;
 import com.jasper.vo.UserVo;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,7 @@ public class UserService {
                 .firstName(userVo.getFirstName())
                 .lastName(userVo.getLastName())
                 .username(userVo.getUsername())
-                .password(Base64.encodeBase64(userVo.getPassword().getBytes()).toString())
+                .password(Base64.encodeBase64(userVo.getPassword().getBytes()))
                 .build();
 
         userRepository.save(userEntity);
@@ -65,5 +67,17 @@ public class UserService {
 
         map.put("username",userVo.getUsername());
         return map;
+    }
+
+    public Object auth(AuthReqVo authReqVo){
+
+        UserEntity userEntity = userRepository.findFirstByUsernameAndPassword(authReqVo.getUsername(),Base64.encodeBase64(authReqVo.getPassword().getBytes()));
+        RespVo respVo;
+        if (userEntity!=null){
+            respVo = new RespVo(200,"good");
+        }else {
+            respVo = new RespVo(401,"no");
+        }
+        return respVo;
     }
 }

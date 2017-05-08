@@ -57,6 +57,5 @@ public class MainController {
     @RequestMapping(value = "test",method = RequestMethod.GET)
     public Object test(){
         throw new TestExcepition(ErrorCodesEnum.ERR_TEST,"testtest");
-//        return "1";
     }
 }
